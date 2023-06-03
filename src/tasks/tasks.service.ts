@@ -11,6 +11,7 @@ export class TasksService {
     @InjectRepository(Task)
     private taskRepository: Repository<Task>,
   ) {}
+
   async getTaskById(id: string): Promise<Task> {
     const found = await this.taskRepository.findOne({
       where: { id },
@@ -20,6 +21,7 @@ export class TasksService {
     }
     return found;
   }
+
   async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
     const { title, description } = createTaskDto;
     const task = this.taskRepository.create({
