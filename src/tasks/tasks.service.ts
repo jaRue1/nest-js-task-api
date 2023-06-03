@@ -1,19 +1,20 @@
-import { Task } from './dto/task.entity';
+import { Task } from './task.entity';
 import { Injectable } from '@nestjs/common';
 import { TaskStatus } from './tasks.status.enum';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { Repository } from 'typeorm';
+import { TaskRepository } from '../shared/repositories/task.repository';
 
 @Injectable()
 export class TasksService {
   constructor(
-    @InjectRepository(Task)
-    private taskRepository: Repository<Task>,
+    @InjectRepository(TaskRepository)
+    private taskRepository: TaskRepository,
   ) {}
 
   async getTaskById(id: string): Promise<Task> {
-    const found = await this.taskRepository.findOne({
+    const found = await this.taskRepository.findOneById({
       where: { id },
     });
     if (!found) {
