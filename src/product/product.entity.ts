@@ -14,9 +14,9 @@ export class Product {
   @Column()
   price: number;
 
-  @Column()
-  status?: ProductStatus;
+  @Column({ nullable: true })
+  status?: ProductStatus | null;
 
-  @Column()
-  quantity?: number;
+  @Column({ nullable: true })
+  quantity?: number | null;
 }
