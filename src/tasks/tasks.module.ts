@@ -8,13 +8,7 @@ import { TaskRepository } from '../shared/repositories/task.repository';
 @Module({
   imports: [TypeOrmModule.forFeature([Task])],
   controllers: [TasksController],
-  providers: [
-    TasksService,
-    {
-      provide: 'TaskRepositoryInterface',
-      useClass: TaskRepository,
-    },
-  ],
+  providers: [TasksService, TaskRepository],
   exports: [TasksService],
 })
 export class TasksModule {}

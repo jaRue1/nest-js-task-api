@@ -13,4 +13,8 @@ export class ProductController {
   getProducts(@Param('id') id: string): Promise<Product> {
     return this.productService.getProductById(id);
   }
+  @Get()
+  getAllProducts(): Promise<Product[]> {
+    return this.productService.getProducts();
+  }
 }
